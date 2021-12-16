@@ -1,0 +1,23 @@
+.enterInChatContainer {
+    max-width: 1000px;
+    width: 100%;
+    margin: 200px auto;
+}
+
+.enterInChatContainer h3 {
+    margin: 0;
+    padding: 0;
+}
+
+.formEnterInChat {
+    width: 300px;
+    margin: 100px auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #5a5a5a;
+    background: #ccc;
+    border-radius: 20px;
+}

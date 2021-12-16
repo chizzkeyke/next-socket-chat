@@ -1,0 +1,68 @@
+.container {
+    max-width: 1000px;
+    height: auto;
+}
+
+.chatContainer {
+    margin: 50px auto;
+    width: 800px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 600px;
+
+    border-radius: 20px;
+    background: #fff;
+    box-shadow: 0 0 10px #000;
+}
+
+.leftBlock {
+    flex: 3;
+    display: flex;
+    padding: 20px 10px 10px 20px;
+}
+
+.rightBlock {
+    flex: 8;
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+}
+
+.listUsers {
+    height: 550px;
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+}
+
+.listMessages {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+}
+
+.footerMessage {
+    display: flex;
+    padding: 10px;
+
+}
+
+.footerMessage textarea {
+    flex: 8;
+    height: 70px;
+    outline: none;
+}
+
+.footerMessage button {
+    flex: 2;
+    outline: none;
+}
+
+
+
+
