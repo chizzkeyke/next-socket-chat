@@ -5,7 +5,7 @@ import { nanoid } from 'nanoid'
 import chatModule from '../styles/Chat.module.css'
 import { useRouter } from 'next/router'
 import ScrollToBottom from 'react-scroll-to-bottom'
-import {MessageLayout} from '../components/Message'
+import { MessageLayout } from '../components/MessageLayout'
 
 const Chat = () => {
    const [state, dispatch] = React.useContext(CurrentUserContext)
@@ -15,7 +15,6 @@ const Chat = () => {
 
    React.useEffect(() => {
       socket.on('MESSAGE:RECEIVE', (data) => {
-         console.log(data)
          setListMessages(list => [...list, data])
       })
    }, [])
@@ -24,7 +23,7 @@ const Chat = () => {
       if (currentMessage !== '') {
          const messageData = {
             room: state.room,
-            author: state.name,
+            author: state.userName,
             message: currentMessage,
             time: new Date(Date.now()).getHours() + ':' + new Date(Date.now()).getMinutes()
          }
@@ -39,16 +38,8 @@ const Chat = () => {
       router.push('/')
    }
 
-   const checkYourMessageOrNot = (name) => {
-      if (name === state.name ) {
-         return true
-      } else {
-         return false
-      }
-   }
-
    const exitChat = () => {
-      socket.emit('ROOM:DISCONNECT')
+      socket.emit('ROOM:EXIT', { userName: state.userName, room: state.room })
       dispatch({
          type: 'LOGOUT_ROOM'
       })
@@ -58,7 +49,7 @@ const Chat = () => {
 
    return (
       <div className={chatModule.containerChatPage}>
-         <ScrollToBottom>
+
          {
             state?.joinedInRoom
                ? (
@@ -69,14 +60,15 @@ const Chat = () => {
                         </div>
                      </div>
                      <div className={chatModule.rightBlock}>
-                        <div className={chatModule.listMessages}>
+                        <ScrollToBottom className={chatModule.listMessages}>
                            {listMessages.map(message => (
                               <MessageLayout
-                                 currentUser={checkYourMessageOrNot(state.name)}
-                                 message={message.message}
+                                 key={nanoid()}
+                                 username={state.userName}
+                                 messageContent={message}
                               />
                            ))}
-                        </div>
+                        </ScrollToBottom>
                         <div className={chatModule.footerMessage}>
                         <textarea
                            placeholder={'Write message'}
@@ -89,12 +81,13 @@ const Chat = () => {
                      </div>
                   </div>
                )
-               : (<div>
-                  <h1>You don't enter on room</h1>
-                  <button onClick={returnOnTitlePage}>Back</button>
-               </div>)
+               : (
+                  <div>
+                     <h1>You don't enter on room</h1>
+                     <button onClick={returnOnTitlePage}>Back</button>
+                  </div>
+               )
          }
-         </ScrollToBottom>
          <button onClick={exitChat}>Exit</button>
       </div>
    )

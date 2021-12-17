@@ -1,21 +1,3 @@
-html,
-body {
-    padding: 0;
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    background: #9ecaff;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-* {
-    box-sizing: border-box;
-}
-
 .messageContainer {
     display: flex;
     flex-direction: column;
@@ -44,26 +26,11 @@ a {
     flex-direction: row;
     justify-content: space-between;
     font-size: 12px;
-    padding: 0 10px 10px 20px;
+    padding:0 10px 10px 20px;
 }
 
-.messageMeta p {
+.messageMeta p{
     padding: 0;
     margin: 0;
 }
 
-#you {
-    justify-content: flex-start;
-}
-
-#other {
-    justify-content: flex-end;
-}
-
-#you .messageContent {
-    background: #01ffd7
-}
-
-#other .messageContent {
-    background: #0173ff;
-}
